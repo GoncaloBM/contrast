@@ -1,12 +1,56 @@
+
 .board {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid black;
-  height: 200px;
-  width: 20%;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    border: 1px solid rgb(113, 113, 113);
+    height: 50%;
+    width: 70%;
+    margin-top: 2%;
+    margin-left: 15%;
+  }
+  
+  .mediumtext {
+    font-weight: lighter;
+    margin: 4%;
+  }
+
+  .tool {
+      background-color: black;
+
+}
+.layoutName {
+    margin: 3%;
 }
 
-.text {
-  font-size: xx-large;
+.title {
+  text-align: center;
+  margin-left: -2rem;
+  font-weight: lighter;
+
+}
+
+.button {
+    text-align: center;
+    padding: 5rem;
+
+}
+
+.ButtonLeft {
+    margin-top: 60%;
+    margin-left: 75%;
+    position: absolute;
+    height: 50px;
+    width: 140px;
+    border: 0.5px solid rgb(177, 177, 177);
+
+}
+.ButtonRight {
+    margin-top: 60%;
+    margin-left: 15%;
+    position: absolute;
+    height:50px;
+    width: 140px;
+    border: 0.5px solid rgb(177, 177, 177);
+
 }

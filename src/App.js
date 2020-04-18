@@ -27,23 +27,30 @@ function App() {
 
   return (
     <div className="App">
+      <h2 className="layoutName">Your Layout</h2>
       <div className="board" style={{ backgroundColor: `${boardColor}` }}>
         <div className="text" style={{ color: `${textColor}` }}>
-          Hey
+          <h2>Star Wars - The Last Jedi</h2>
+          <h4 className="mediumtext">A small river named Duden flows by their place and supplies it.</h4>
+          <h5 className="mediumtext">Far far away, behind the word mountains, far from the countries Vokalia and a Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</h5>
         </div>
       </div>
-      <ColorPicker
-        text={"Choose your board Color"}
+      <div className="ButtonLeft">
+      <ColorPicker className="button"
+        text={"Choose your Board Color"}
         defineColor={defineBoardColor}
         button={"board"}
         defineButton={defineButton}
       />
+       </div>
+       <div className="ButtonRight">
       <ColorPicker
-        text={"Choose your text Color"}
+        text={"Choose your Text Color"}
         defineColor={defineTextColor}
-        button={"text"}
+        button={"board"}
         defineButton={defineButton}
       />
+      </div>
     </div>
   );
 }
