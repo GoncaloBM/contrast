@@ -12,6 +12,7 @@ export const ColorPicker = ({ defineColor, text, defineButton, button }) => {
   });
 
   const keyboardChoser = (e) => {
+    e.preventDefault();
     if (e.keyCode === 13) {
       setRgbColor({
         ...rgbColor,
