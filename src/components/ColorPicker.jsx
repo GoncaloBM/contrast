@@ -1,26 +1,29 @@
 import React, { useState } from "react";
 import { SketchPicker } from "react-color";
-import './ColorPicker.css'
+import "./ColorPicker.css";
 
-export const ColorPicker = () => {
+export const ColorPicker = ({ defineColor,text }) => {
   const [visiblePallete, setVisiblePallete] = useState(false);
-  const [color, setColor] = useState({ background: "#fff" });
+  const [backgroundColor, setBackgroundColor] = useState("#fff");
 
   const handleChangeComplete = (color) => {
-    setColor({ ...color, background: color.hex });
+    setBackgroundColor(color.hex);
+
+    defineColor(color.hex);
   };
 
   return (
-    <div className='color-picker'>
+    <div className="color-picker">
       <button onClick={() => setVisiblePallete(!visiblePallete)}>
-        Choose your color
+        {text}
       </button>
       {visiblePallete && (
         <SketchPicker
-          color={color.background}
+          color={backgroundColor}
           onChangeComplete={handleChangeComplete}
         />
       )}
+      {/* <button onClick={() => console.log(color.background)}></button> */}
     </div>
   );
 };

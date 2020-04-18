@@ -1,0 +1,12 @@
+.board {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  height: 200px;
+  width: 20%;
+}
+
+.text {
+  font-size: xx-large;
+}
