@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import useEventListener from "./use-event-listener";
 import "./App.css";
 import "./Board.css";
 import { ColorPicker } from "./components/ColorPicker";
@@ -6,13 +7,22 @@ import { ColorPicker } from "./components/ColorPicker";
 function App() {
   const [boardColor, setBoardColor] = useState("");
   const [textColor, setTextColor] = useState("");
+  const [buttonType, setButtonType] = useState("");
 
   const defineBoardColor = (color) => {
-    setBoardColor(color);
+    if (buttonType === "board") {
+      setBoardColor(color);
+    }
   };
 
   const defineTextColor = (color) => {
-    setTextColor(color);
+    if (buttonType === "text") {
+      setTextColor(color);
+    }
+  };
+
+  const defineButton = (button) => {
+    setButtonType(button);
   };
 
   return (
@@ -25,10 +35,14 @@ function App() {
       <ColorPicker
         text={"Choose your board Color"}
         defineColor={defineBoardColor}
+        button={"board"}
+        defineButton={defineButton}
       />
       <ColorPicker
         text={"Choose your text Color"}
         defineColor={defineTextColor}
+        button={"text"}
+        defineButton={defineButton}
       />
     </div>
   );
