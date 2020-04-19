@@ -4,9 +4,11 @@ import "./Board.css";
 import { ColorPicker } from "./components/ColorPicker";
 
 function App() {
-  const [boardColor, setBoardColor] = useState("");
-  const [textColor, setTextColor] = useState("");
+  const [boardColor, setBoardColor] = useState("#ffffff");
+  const [textColor, setTextColor] = useState("#000000");
   const [buttonType, setButtonType] = useState("");
+  const [rgbType, setRgbType] = useState(0);
+  const [textOfColor, setTextOfColor] = useState("");
 
   const defineBoardColor = (color) => {
     if (buttonType === "board") {
@@ -22,6 +24,17 @@ function App() {
 
   const defineButton = (button) => {
     setButtonType(button);
+  };
+
+  const defineRgbType = (type) => {
+    setRgbType(type);
+    if (rgbType === 0) {
+      setTextOfColor("Select your color and change red using up and down arrow, press Enter to finnish that color");
+    } else if (rgbType === 2) {
+      setTextOfColor("Changing green, press Enter to finnish that color");
+    } else if (rgbType === 3) {
+      setTextOfColor("Changing blue, press Enter to finnish that color");
+    }
   };
 
   return (
@@ -48,6 +61,8 @@ function App() {
           defineColor={defineBoardColor}
           button={"board"}
           defineButton={defineButton}
+          initialColor={boardColor}
+          defineRgbType={defineRgbType}
         />
       </div>
       <div className="ButtonRight">
@@ -56,8 +71,21 @@ function App() {
           defineColor={defineTextColor}
           button={"text"}
           defineButton={defineButton}
+          initialColor={textColor}
+          defineRgbType={defineRgbType}
         />
       </div>
+      <p>
+        Press right arrow to change text color and left arrow to change board
+        color
+      </p>
+      {buttonType && (
+        <div>
+          <p>Changing {buttonType} color.</p>
+          <p>{textOfColor}</p>
+          {buttonType === "board" ? boardColor : textColor}
+        </div>
+      )}
     </div>
   );
 }

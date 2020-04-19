@@ -4,9 +4,16 @@ import "./ColorPicker.css";
 import useEventListener from "./../use-event-listener";
 import { rgbToHex } from "./RGBtoHex";
 
-export const ColorPicker = ({ defineColor, text, defineButton, button }) => {
+export const ColorPicker = ({
+  defineColor,
+  text,
+  defineButton,
+  button,
+  initialColor,
+  defineRgbType,
+}) => {
   const [visiblePallete, setVisiblePallete] = useState(false);
-  const [backgroundColor, setBackgroundColor] = useState("#fff");
+  const [backgroundColor, setBackgroundColor] = useState(initialColor);
   const [rgbColor, setRgbColor] = useState({
     choose: 0,
   });
@@ -76,18 +83,20 @@ export const ColorPicker = ({ defineColor, text, defineButton, button }) => {
 
     setBackgroundColor(rgbToHex(rgbColor.r, rgbColor.g, rgbColor.b));
     defineColor(rgbToHex(rgbColor.r, rgbColor.g, rgbColor.b));
+    defineRgbType(rgbColor.choose);
   };
 
   const handleChangeComplete = (color) => {
     setRgbColor({
       ...rgbColor,
-      choose: 0,
+      choose: 1,
       r: color.rgb.r,
       g: color.rgb.g,
       b: color.rgb.b,
     });
     setBackgroundColor(color.hex);
     defineColor(color.hex);
+    defineRgbType(rgbColor.choose);
   };
 
   const click = () => {
@@ -95,7 +104,20 @@ export const ColorPicker = ({ defineColor, text, defineButton, button }) => {
     defineButton(button);
   };
 
+  const openWithKeyboard = (e) => {
+    e.preventDefault();
+
+    if (e.keyCode === 37 && button === "text") {
+      setVisiblePallete(!visiblePallete);
+      defineButton(button);
+    } else if (e.keyCode === 39 && button === "board") {
+      setVisiblePallete(!visiblePallete);
+      defineButton(button);
+    }
+  };
+
   useEventListener("keydown", keyboardChoser);
+  useEventListener("keydown", openWithKeyboard);
   return (
     <div className="color-picker">
       <button onClick={click}>{text}</button>
