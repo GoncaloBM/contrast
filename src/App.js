@@ -1,43 +1,97 @@
-
 import React, { useState } from "react";
 import "./App.css";
 import "./Board.css";
 import { ColorPicker } from "./components/ColorPicker";
 
 function App() {
-  const [boardColor, setBoardColor] = useState("");
-  const [textColor, setTextColor] = useState("");
+  const [boardColor, setBoardColor] = useState("#ffffff");
+  const [textColor, setTextColor] = useState("#000000");
+  const [buttonType, setButtonType] = useState("");
+  const [rgbType, setRgbType] = useState(0);
+  const [textOfColor, setTextOfColor] = useState("");
 
   const defineBoardColor = (color) => {
-    setBoardColor(color);
+    if (buttonType === "board") {
+      setBoardColor(color);
+    }
   };
 
   const defineTextColor = (color) => {
-    setTextColor(color);
+    if (buttonType === "text") {
+      setTextColor(color);
+    }
+  };
+
+  const defineButton = (button) => {
+    setButtonType(button);
+  };
+
+  const defineRgbType = (type) => {
+    setRgbType(type);
+    if (rgbType === 0) {
+      setTextOfColor("Select your color and change red using up and down arrow, press Enter to finnish that color");
+    } else if (rgbType === 2) {
+      setTextOfColor("Changing green, press Enter to finnish that color");
+    } else if (rgbType === 3) {
+      setTextOfColor("Changing blue, press Enter to finnish that color");
+    }
   };
 
   return (
     <div className="App">
-      <h2 className="layoutName">Your Layout</h2>
+      <h2 className="layoutName">This is your Layout</h2>
       <div className="board" style={{ backgroundColor: `${boardColor}` }}>
         <div className="text" style={{ color: `${textColor}` }}>
           <h2>Star Wars - The Last Jedi</h2>
-          <h4 className="mediumtext">A small river named Duden flows by their place and supplies it.</h4>
-          <h5 className="mediumtext">Far far away, behind the word mountains, far from the countries Vokalia and a Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</h5>
+          <h4 className="mediumtext">
+            A small river named Duden flows by their place and supplies it.
+          </h4>
+          <h5 className="mediumtext">
+            Far far away, behind the word mountains, far from the countries
+            Vokalia and a Consonantia, there live the blind texts. Separated
+            they live in Bookmarksgrove right at the coast of the Semantics, a
+            large language ocean.
+          </h5>
         </div>
       </div>
+      <div className="actionsMenu">
       <div className="ButtonLeft">
-      <ColorPicker className="button"
-        text={"Choose your Board Color"}
-        defineColor={defineBoardColor}
-      />
-       </div>
-       <div className="ButtonRight">
-      <ColorPicker
-        text={"Choose your Text Color"}
-        defineColor={defineTextColor}
-      />
+      <div className="left"></div>
+        <ColorPicker
+          className="button"
+          text={"Choose your Board Color"}
+          defineColor={defineBoardColor}
+          button={"board"}
+          defineButton={defineButton}
+          initialColor={boardColor}
+          defineRgbType={defineRgbType}
+        />
+         <div className="right"></div>
       </div>
+      <div className="ButtonRight">
+      <div className="top"></div>
+        <ColorPicker
+          text={"Choose your Text Color"}
+          defineColor={defineTextColor}
+          button={"text"}
+          defineButton={defineButton}
+          initialColor={textColor}
+          defineRgbType={defineRgbType}
+        />
+          <div className="down"></div>
+      </div>
+      </div>
+      <p className="instructions">
+        Press right arrow to change text color and left arrow to change board
+        color
+      </p>
+      {buttonType && (
+        <div className="hexaTab">
+          <p className="aligntext">Changing {buttonType} color.</p>
+          <p className="aligntext">{textOfColor}</p>
+          <p className="hexadecimal">{buttonType === "board" ? boardColor : textColor}</p>
+        </div>
+      )}
     </div>
   );
 }
