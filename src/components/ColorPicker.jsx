@@ -21,10 +21,16 @@ export const ColorPicker = ({
   const keyboardChoser = (e) => {
     e.preventDefault();
     if (e.keyCode === 13) {
-      setRgbColor({
-        ...rgbColor,
-        choose: rgbColor.choose + 1,
-      });
+      if (rgbColor.choose === 3) {
+        setRgbColor({
+          ...rgbColor,
+          choose: 0,
+        });
+      } else
+        setRgbColor({
+          ...rgbColor,
+          choose: rgbColor.choose + 1,
+        });
     }
 
     if (rgbColor.choose === 1) {

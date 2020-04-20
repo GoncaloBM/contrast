@@ -4,7 +4,7 @@ import "./Board.css";
 import { ColorPicker } from "./components/ColorPicker";
 
 function App() {
-  const [boardColor, setBoardColor] = useState("#ffffff");
+  const [boardColor, setBoardColor] = useState("#d0b487");
   const [textColor, setTextColor] = useState("#000000");
   const [buttonType, setButtonType] = useState("");
   const [rgbType, setRgbType] = useState(0);
