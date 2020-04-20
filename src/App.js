@@ -4,7 +4,7 @@ import "./Board.css";
 import { ColorPicker } from "./components/ColorPicker";
 
 function App() {
-  const [boardColor, setBoardColor] = useState("#d0b487");
+  const [boardColor, setBoardColor] = useState("#ffffff");
   const [textColor, setTextColor] = useState("#000000");
   const [buttonType, setButtonType] = useState("");
   const [rgbType, setRgbType] = useState(0);
@@ -39,7 +39,7 @@ function App() {
 
   return (
     <div className="App">
-      <h2 className="layoutName">Your Layout</h2>
+      <h2 className="layoutName">This is your Layout</h2>
       <div className="board" style={{ backgroundColor: `${boardColor}` }}>
         <div className="text" style={{ color: `${textColor}` }}>
           <h2>Star Wars - The Last Jedi</h2>
@@ -54,7 +54,9 @@ function App() {
           </h5>
         </div>
       </div>
+      <div className="actionsMenu">
       <div className="ButtonLeft">
+      <div className="left"></div>
         <ColorPicker
           className="button"
           text={"Choose your Board Color"}
@@ -64,8 +66,10 @@ function App() {
           initialColor={boardColor}
           defineRgbType={defineRgbType}
         />
+         <div className="right"></div>
       </div>
       <div className="ButtonRight">
+      <div className="top"></div>
         <ColorPicker
           text={"Choose your Text Color"}
           defineColor={defineTextColor}
@@ -74,16 +78,18 @@ function App() {
           initialColor={textColor}
           defineRgbType={defineRgbType}
         />
+          <div className="down"></div>
       </div>
-      <p>
+      </div>
+      <p className="instructions">
         Press right arrow to change text color and left arrow to change board
         color
       </p>
       {buttonType && (
-        <div>
-          <p>Changing {buttonType} color.</p>
-          <p>{textOfColor}</p>
-          {buttonType === "board" ? boardColor : textColor}
+        <div className="hexaTab">
+          <p className="aligntext">Changing {buttonType} color.</p>
+          <p className="aligntext">{textOfColor}</p>
+          <p className="hexadecimal">{buttonType === "board" ? boardColor : textColor}</p>
         </div>
       )}
     </div>
