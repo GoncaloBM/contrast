@@ -116,9 +116,19 @@ export const ColorPicker = ({
     if (e.keyCode === 37 && button === "text") {
       setVisiblePallete(!visiblePallete);
       defineButton(button);
+      if (rgbColor.choose === 0) {
+        setRgbColor({ ...rgbColor, choose: 1 });
+      } else {
+        setRgbColor({ ...rgbColor, choose: 0 });
+      }
     } else if (e.keyCode === 39 && button === "board") {
       setVisiblePallete(!visiblePallete);
       defineButton(button);
+      if (rgbColor.choose === 0) {
+        setRgbColor({ ...rgbColor, choose: 1 });
+      } else {
+        setRgbColor({ ...rgbColor, choose: 0 });
+      }
     }
   };
 
