@@ -11,20 +11,33 @@ export const ColorPicker = ({
   button,
   initialColor,
   defineRgbType,
+  changeColor,
+  changingColor,
 }) => {
   const [visiblePallete, setVisiblePallete] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState(initialColor);
   const [rgbColor, setRgbColor] = useState({
     choose: 0,
+    r: 0,
+    g: 0,
+    b: 0,
   });
+  const [isTV, setIsTV] = useState(false);
 
   const keyboardChoser = (e) => {
     e.preventDefault();
     if (e.keyCode === 13) {
-      setRgbColor({
-        ...rgbColor,
-        choose: rgbColor.choose + 1,
-      });
+      if (rgbColor.choose === 3) {
+        setRgbColor({
+          ...rgbColor,
+          choose: 1,
+        });
+      } else {
+        setRgbColor({
+          ...rgbColor,
+          choose: rgbColor.choose + 1,
+        });
+      }
     }
 
     if (rgbColor.choose === 1) {
@@ -87,16 +100,19 @@ export const ColorPicker = ({
   };
 
   const handleChangeComplete = (color) => {
-    setRgbColor({
-      ...rgbColor,
-      choose: 1,
-      r: color.rgb.r,
-      g: color.rgb.g,
-      b: color.rgb.b,
-    });
     setBackgroundColor(color.hex);
     defineColor(color.hex);
-    defineRgbType(rgbColor.choose);
+  };
+
+  const handleChangeCompleteTV = () => {
+      setRgbColor({
+        ...rgbColor,
+        choose: 1,
+      });
+
+
+    setBackgroundColor(backgroundColor);
+    defineColor(backgroundColor);
   };
 
   const click = () => {
@@ -108,11 +124,15 @@ export const ColorPicker = ({
     e.preventDefault();
 
     if (e.keyCode === 37 && button === "text") {
-      setVisiblePallete(!visiblePallete);
-      defineButton(button);
+      setIsTV(true);
+      click();
+      changeColor();
+      handleChangeCompleteTV();
     } else if (e.keyCode === 39 && button === "board") {
-      setVisiblePallete(!visiblePallete);
-      defineButton(button);
+      setIsTV(true);
+      click();
+      changeColor();
+      handleChangeCompleteTV();
     }
   };
 
@@ -124,7 +144,9 @@ export const ColorPicker = ({
       {visiblePallete && (
         <SketchPicker
           color={backgroundColor}
-          onChangeComplete={handleChangeComplete}
+          onChangeComplete={
+            isTV ? handleChangeCompleteTV : handleChangeComplete
+          }
         />
       )}
     </div>

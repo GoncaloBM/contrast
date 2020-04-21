@@ -9,6 +9,7 @@ function App() {
   const [buttonType, setButtonType] = useState("");
   const [rgbType, setRgbType] = useState(0);
   const [textOfColor, setTextOfColor] = useState("");
+  const [changingColor, setChangingColor] = useState(false);
 
   const defineBoardColor = (color) => {
     if (buttonType === "board") {
@@ -27,14 +28,19 @@ function App() {
   };
 
   const defineRgbType = (type) => {
-    setRgbType(type);
-    if (rgbType === 0) {
-      setTextOfColor("Select your color and change red using up and down arrow, press Enter to finnish that color");
-    } else if (rgbType === 2) {
+    if (type === 0 || type === 1) {
+      setTextOfColor(
+        "Select your color and change red using up and down arrow, press Enter to finnish that color"
+      );
+    } else if (type === 2) {
       setTextOfColor("Changing green, press Enter to finnish that color");
-    } else if (rgbType === 3) {
+    } else if (type === 3) {
       setTextOfColor("Changing blue, press Enter to finnish that color");
     }
+  };
+
+  const changeColor = () => {
+    setChangingColor(!changingColor);
   };
 
   return (
@@ -63,6 +69,8 @@ function App() {
           defineButton={defineButton}
           initialColor={boardColor}
           defineRgbType={defineRgbType}
+          changeColor={changeColor}
+          changingColor={changingColor}
         />
       </div>
       <div className="ButtonRight">
@@ -73,6 +81,8 @@ function App() {
           defineButton={defineButton}
           initialColor={textColor}
           defineRgbType={defineRgbType}
+          changeColor={changeColor}
+          changingColor={changingColor}
         />
       </div>
       <p>
