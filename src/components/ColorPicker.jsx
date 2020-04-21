@@ -12,7 +12,6 @@ export const ColorPicker = ({
   initialColor,
   defineRgbType,
   changeColor,
-  changingColor,
 }) => {
   const [visiblePallete, setVisiblePallete] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState(initialColor);
@@ -105,12 +104,6 @@ export const ColorPicker = ({
   };
 
   const handleChangeCompleteTV = () => {
-      setRgbColor({
-        ...rgbColor,
-        choose: 1,
-      });
-
-
     setBackgroundColor(backgroundColor);
     defineColor(backgroundColor);
   };
@@ -118,20 +111,24 @@ export const ColorPicker = ({
   const click = () => {
     setVisiblePallete(!visiblePallete);
     defineButton(button);
+    changeColor();
   };
 
   const openWithKeyboard = (e) => {
     e.preventDefault();
 
-    if (e.keyCode === 37 && button === "text") {
+    if (
+      (e.keyCode === 37 && button === "text") ||
+      (e.keyCode === 39 && button === "board")
+    ) {
       setIsTV(true);
+
+      setRgbColor({
+        ...rgbColor,
+        choose: 1,
+      });
+
       click();
-      changeColor();
-      handleChangeCompleteTV();
-    } else if (e.keyCode === 39 && button === "board") {
-      setIsTV(true);
-      click();
-      changeColor();
       handleChangeCompleteTV();
     }
   };

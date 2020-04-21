@@ -7,7 +7,6 @@ function App() {
   const [boardColor, setBoardColor] = useState("#ffffff");
   const [textColor, setTextColor] = useState("#000000");
   const [buttonType, setButtonType] = useState("");
-  const [rgbType, setRgbType] = useState(0);
   const [textOfColor, setTextOfColor] = useState("");
   const [changingColor, setChangingColor] = useState(false);
 
@@ -24,13 +23,13 @@ function App() {
   };
 
   const defineButton = (button) => {
-    setButtonType(button);
+      setButtonType(button);
   };
 
   const defineRgbType = (type) => {
     if (type === 0 || type === 1) {
       setTextOfColor(
-        "Select your color and change red using up and down arrow, press Enter to finnish that color"
+        "Change red using up and down arrow, press Enter to finnish that color"
       );
     } else if (type === 2) {
       setTextOfColor("Changing green, press Enter to finnish that color");
@@ -86,10 +85,10 @@ function App() {
         />
       </div>
       <p>
-        Press right arrow to change text color and left arrow to change board
+        If on TV, press left arrow to change text color and right arrow to change board
         color
       </p>
-      {buttonType && (
+      {changingColor && (
         <div>
           <p>Changing {buttonType} color.</p>
           <p>{textOfColor}</p>
