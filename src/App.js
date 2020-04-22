@@ -23,7 +23,7 @@ function App() {
   };
 
   const defineButton = (button) => {
-      setButtonType(button);
+    setButtonType(button);
   };
 
   const defineRgbType = (type) => {
@@ -44,13 +44,13 @@ function App() {
 
   return (
     <div className="App">
-      <h2 className="layoutName">Your Layout</h2>
+      <h2 className="layoutName">This is your Layout</h2>
       <div className="board" style={{ backgroundColor: `${boardColor}` }}>
         <div className="text" style={{ color: `${textColor}` }}>
           <h2>Star Wars - The Last Jedi</h2>
-          <h4 className="mediumtext">
+          <h3 className="mediumtext">
             A small river named Duden flows by their place and supplies it.
-          </h4>
+          </h3>
           <h5 className="mediumtext">
             Far far away, behind the word mountains, far from the countries
             Vokalia and a Consonantia, there live the blind texts. Separated
@@ -59,40 +59,50 @@ function App() {
           </h5>
         </div>
       </div>
-      <div className="ButtonLeft">
-        <ColorPicker
-          className="button"
-          text={"Choose your Board Color"}
-          defineColor={defineBoardColor}
-          button={"board"}
-          defineButton={defineButton}
-          initialColor={boardColor}
-          defineRgbType={defineRgbType}
-          changeColor={changeColor}
-          changingColor={changingColor}
-        />
+      <div className="actionsMenu">
+        <div className="ActionButton">
+          <div className="top"></div>
+          <div className="pickerstyle">
+            <ColorPicker
+              className="button"
+              text={"Choose your Board Color"}
+              defineColor={defineBoardColor}
+              button={"board"}
+              defineButton={defineButton}
+              initialColor={boardColor}
+              defineRgbType={defineRgbType}
+              changeColor={changeColor}
+              changingColor={changingColor}
+            />
+          </div>
+          <div className="left"></div>
+          <div className="right"></div>
+          <div className="pickerstyle">
+            <ColorPicker
+              text={"Choose your Text Color"}
+              defineColor={defineTextColor}
+              button={"text"}
+              defineButton={defineButton}
+              initialColor={textColor}
+              defineRgbType={defineRgbType}
+              changeColor={changeColor}
+              changingColor={changingColor}
+            />
+          </div>
+          <div className="down"></div>
+        </div>
       </div>
-      <div className="ButtonRight">
-        <ColorPicker
-          text={"Choose your Text Color"}
-          defineColor={defineTextColor}
-          button={"text"}
-          defineButton={defineButton}
-          initialColor={textColor}
-          defineRgbType={defineRgbType}
-          changeColor={changeColor}
-          changingColor={changingColor}
-        />
-      </div>
-      <p>
-        If on TV, press left arrow to change text color and right arrow to change board
+      <p className="instructions">
+        Press right arrow to change text color and left arrow to change board
         color
       </p>
-      {changingColor && (
-        <div>
-          <p>Changing {buttonType} color.</p>
-          <p>{textOfColor}</p>
-          {buttonType === "board" ? boardColor : textColor}
+      {buttonType && (
+        <div className="hexaTab">
+          <p className="aligntext">Changing {buttonType} color.</p>
+          <p className="aligntext">{textOfColor}</p>
+          <p className="hexadecimal">
+            {buttonType === "board" ? boardColor : textColor}
+          </p>
         </div>
       )}
     </div>
