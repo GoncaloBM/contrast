@@ -43,9 +43,9 @@ function App() {
       <div className="board" style={{ backgroundColor: `${boardColor}` }}>
         <div className="text" style={{ color: `${textColor}` }}>
           <h2>Star Wars - The Last Jedi</h2>
-          <h4 className="mediumtext">
+          <h3 className="mediumtext">
             A small river named Duden flows by their place and supplies it.
-          </h4>
+          </h3>
           <h5 className="mediumtext">
             Far far away, behind the word mountains, far from the countries
             Vokalia and a Consonantia, there live the blind texts. Separated
@@ -55,9 +55,10 @@ function App() {
         </div>
       </div>
       <div className="actionsMenu">
-      <div className="ButtonLeft">
-      <div className="left"></div>
-        <ColorPicker
+      <div className="ActionButton">
+      <div className="top"></div>
+       <div className="pickerstyle">
+         <ColorPicker
           className="button"
           text={"Choose your Board Color"}
           defineColor={defineBoardColor}
@@ -65,11 +66,10 @@ function App() {
           defineButton={defineButton}
           initialColor={boardColor}
           defineRgbType={defineRgbType}
-        />
-         <div className="right"></div>
-      </div>
-      <div className="ButtonRight">
-      <div className="top"></div>
+        /></div> 
+        <div className="left"></div>
+        <div className="right"></div>
+        <div className="pickerstyle">
         <ColorPicker
           text={"Choose your Text Color"}
           defineColor={defineTextColor}
@@ -77,8 +77,8 @@ function App() {
           defineButton={defineButton}
           initialColor={textColor}
           defineRgbType={defineRgbType}
-        />
-          <div className="down"></div>
+        /></div>
+        <div className="down"></div>
       </div>
       </div>
       <p className="instructions">
