@@ -59,10 +59,10 @@ function App() {
           </h5>
         </div>
       </div>
-      <div className="actionsMenu">
+      <div className="ActionMenu">
         <div className="ActionButton">
           <div className="top"></div>
-          <div className="pickerstyle">
+          <div className="pickerstyle2">
             <ColorPicker
               className="button"
               text={"Choose your Board Color"}
@@ -92,10 +92,10 @@ function App() {
           <div className="down"></div>
         </div>
       </div>
-      <p className="instructions">
-        If on TV, Press left arrow to change text color and right arrow to
+      <h3 className="instructions">
+        If you're on a TV, Press left arrow to change text color and right arrow to
         change board color
-      </p>
+      </h3>
       {buttonType && (
         <div className="hexaTab">
           <p className="aligntext">Changing {buttonType} color.</p>
