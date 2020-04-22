@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { SketchPicker } from "react-color";
 import "./ColorPicker.css";
 import useEventListener from "./../use-event-listener";
 import { rgbToHex } from "./RGBtoHex";
+import useOnClickOutside from "../useOnClickOutside";
 
 export const ColorPicker = ({
   defineColor,
@@ -22,6 +23,9 @@ export const ColorPicker = ({
     b: 0,
   });
   const [isTV, setIsTV] = useState(false);
+  const ref = useRef();
+
+  useOnClickOutside(ref, () => setVisiblePallete(false));
 
   const keyboardChoser = (e) => {
     e.preventDefault();
@@ -139,12 +143,14 @@ export const ColorPicker = ({
     <div className="color-picker">
       <button onClick={click}>{text}</button>
       {visiblePallete && (
-        <SketchPicker
-          color={backgroundColor}
-          onChangeComplete={
-            isTV ? handleChangeCompleteTV : handleChangeComplete
-          }
-        />
+        <div ref={ref}>
+          <SketchPicker
+            color={backgroundColor}
+            onChangeComplete={
+              isTV ? handleChangeCompleteTV : handleChangeComplete
+            }
+          />
+        </div>
       )}
     </div>
   );
