@@ -93,8 +93,8 @@ function App() {
         </div>
       </div>
       <p className="instructions">
-        Press right arrow to change text color and left arrow to change board
-        color
+        If on TV, Press left arrow to change text color and right arrow to
+        change board color
       </p>
       {buttonType && (
         <div className="hexaTab">
