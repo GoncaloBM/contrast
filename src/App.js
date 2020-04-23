@@ -45,6 +45,11 @@ function App() {
   return (
     <div className="App">
       <h2 className="layoutName">This is your Layout</h2>
+
+      <h3 className="instructions">
+        If you're on a TV, Press left arrow to change text color and right arrow to
+        change board color
+      </h3>
       <div className="board" style={{ backgroundColor: `${boardColor}` }}>
         <div className="text" style={{ color: `${textColor}` }}>
           <h2>Star Wars - The Last Jedi</h2>
@@ -90,12 +95,6 @@ function App() {
             />
           </div>
           <div className="down"></div>
-        </div>
-      </div>
-      <h3 className="instructions">
-        If you're on a TV, Press left arrow to change text color and right arrow to
-        change board color
-      </h3>
       {buttonType && (
         <div className="hexaTab">
           <p className="aligntext">Changing {buttonType} color.</p>
@@ -106,6 +105,9 @@ function App() {
         </div>
       )}
     </div>
+    </div>
+    </div>
+    
   );
 }
 
