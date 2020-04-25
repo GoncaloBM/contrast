@@ -3,103 +3,139 @@ import { SketchPicker } from "react-color";
 import "./ColorPicker.css";
 import useEventListener from "./../use-event-listener";
 import { rgbToHex } from "./RGBtoHex";
+import { hexToRGB } from "./RGBtoHex";
 import useOnClickOutside from "../useOnClickOutside";
 
 export const ColorPicker = ({
   defineColor,
   text,
   defineButton,
+  buttonType,
   button,
   initialColor,
-  defineRgbType,
+  instructions,
   changeColor,
+  changingColor,
 }) => {
   const [visiblePallete, setVisiblePallete] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState(initialColor);
   const [rgbColor, setRgbColor] = useState({
     choose: 0,
-    r: 0,
-    g: 0,
-    b: 0,
+    r: hexToRGB(initialColor)[0],
+    g: hexToRGB(initialColor)[1],
+    b: hexToRGB(initialColor)[2],
   });
+  const presetColors = [
+    "#D0021B",
+    "#F5A623",
+    "#F8E71C",
+    "#8B572A",
+    "#7ED321",
+    "#417505",
+    "#BD10E0",
+    "#9013FE",
+    "#4A90E2",
+    "#50E3C2",
+  ];
+
+  const keyCodesColors = [49, 50, 51, 52, 53, 54, 55, 56, 57, 48];
+
   const [isTV, setIsTV] = useState(false);
   const ref = useRef();
 
   useOnClickOutside(ref, () => setVisiblePallete(false));
 
+  const newRGBColor = (newOrdEndColor, typeColor, red, green, blue) => {
+    if (newOrdEndColor) {
+      setRgbColor({
+        ...rgbColor,
+        choose: typeColor,
+        r: rgbColor.r + red,
+        g: rgbColor.g + green,
+        b: rgbColor.b + blue,
+      });
+    } else {
+      setRgbColor({
+        ...rgbColor,
+        choose: rgbColor.choose + typeColor,
+        r: rgbColor.r + red,
+        g: rgbColor.g + green,
+        b: rgbColor.b + blue,
+      });
+    }
+    defineColorWithKey();
+  };
+
+  const defineColorWithKey = () => {
+    setBackgroundColor(rgbToHex(rgbColor.r, rgbColor.g, rgbColor.b));
+    defineColor(rgbToHex(rgbColor.r, rgbColor.g, rgbColor.b));
+    instructions(rgbColor.choose);
+  };
+
+  const openWithKeyboard = (e) => {
+    e.preventDefault();
+
+    if (
+      (e.keyCode === 37 || e.keyCode === 39) &&
+      changingColor &&
+      button != buttonType
+    ) {
+      return;
+    }
+
+    if (
+      (e.keyCode === 37 && button === "text") ||
+      (e.keyCode === 39 && button === "board")
+    ) {
+      setIsTV(true);
+      if (!changingColor) {
+        newRGBColor(true, 1, 0, 0, 0);
+      }
+      click();
+      handleChangeCompleteTV(backgroundColor);
+    }
+  };
+
   const keyboardChoser = (e) => {
     e.preventDefault();
-    if (e.keyCode === 13) {
+    if (visiblePallete && e.keyCode === 13) {
       if (rgbColor.choose === 3) {
-        setRgbColor({
-          ...rgbColor,
-          choose: 1,
-        });
+        newRGBColor(true, 1, 0, 0, 0);
       } else {
-        setRgbColor({
-          ...rgbColor,
-          choose: rgbColor.choose + 1,
-        });
+        newRGBColor(false, 1, 0, 0, 0);
       }
     }
 
     if (rgbColor.choose === 1) {
       if (e.keyCode === 38) {
-        setRgbColor({
-          ...rgbColor,
-          r: rgbColor.r + 1,
-          g: rgbColor.g,
-          b: rgbColor.b,
-        });
+        // change red color with up arrow
+        newRGBColor(false, 0, 1, 0, 0);
+        // newRGBColor(true, 2, 1, 0, 0);
       } else if (e.keyCode === 40) {
-        setRgbColor({
-          ...rgbColor,
-          r: rgbColor.r - 1,
-          g: rgbColor.g,
-          b: rgbColor.b,
-        });
+        // change red color with down arrow
+        newRGBColor(false, 0, -1, 0, 0);
       }
     }
 
     if (rgbColor.choose === 2) {
       if (e.keyCode === 38) {
-        setRgbColor({
-          ...rgbColor,
-          r: rgbColor.r,
-          g: rgbColor.g + 1,
-          b: rgbColor.b,
-        });
+        // change green color with up arrow
+        newRGBColor(false, 0, 0, 1, 0);
       } else if (e.keyCode === 40) {
-        setRgbColor({
-          ...rgbColor,
-          r: rgbColor.r,
-          g: rgbColor.g - 1,
-          b: rgbColor.b,
-        });
+        // change green color with down arrow
+        newRGBColor(false, 0, 0, -1, 0);
       }
     }
 
     if (rgbColor.choose === 3) {
       if (e.keyCode === 38) {
-        setRgbColor({
-          ...rgbColor,
-          r: rgbColor.r,
-          g: rgbColor.g,
-          b: rgbColor.b + 1,
-        });
+        // change blue color with up arrow
+        newRGBColor(false, 0, 0, 0, 1);
       } else if (e.keyCode === 40) {
-        setRgbColor({
-          ...rgbColor,
-          r: rgbColor.r,
-          g: rgbColor.g,
-          b: rgbColor.b - 1,
-        });
+        // change blue color with down arrow
+        newRGBColor(false, 0, 0, 0, -1);
       }
     }
-
-    setBackgroundColor(rgbToHex(rgbColor.r, rgbColor.g, rgbColor.b));
-    defineColor(rgbToHex(rgbColor.r, rgbColor.g, rgbColor.b));
-    defineRgbType(rgbColor.choose);
   };
 
   const handleChangeComplete = (color) => {
@@ -107,38 +143,58 @@ export const ColorPicker = ({
     defineColor(color.hex);
   };
 
-  const handleChangeCompleteTV = () => {
-    setBackgroundColor(backgroundColor);
-    defineColor(backgroundColor);
+  const handleChangeCompleteTV = (color) => {
+    setBackgroundColor(color);
+    defineColor(color);
   };
 
   const click = () => {
     setVisiblePallete(!visiblePallete);
-    defineButton(button);
     changeColor();
+    if (changingColor) {
+      defineButton("");
+      instructions(0);
+    } else {
+      defineButton(button);
+      instructions(1);
+    }
   };
 
-  const openWithKeyboard = (e) => {
+  const colorWithNumber = (e) => {
     e.preventDefault();
-
-    if (
-      (e.keyCode === 37 && button === "text") ||
-      (e.keyCode === 39 && button === "board")
-    ) {
-      setIsTV(true);
-
-      setRgbColor({
-        ...rgbColor,
-        choose: 1,
-      });
-
-      click();
-      handleChangeCompleteTV();
+    if (visiblePallete) {
+      if (
+        e.keyCode === 49 ||
+        e.keyCode === 50 ||
+        e.keyCode === 51 ||
+        e.keyCode === 52 ||
+        e.keyCode === 53 ||
+        e.keyCode === 54 ||
+        e.keyCode === 55 ||
+        e.keyCode === 56 ||
+        e.keyCode === 57 ||
+        e.keyCode === 48
+      ) {
+        for (let i = 0; i < keyCodesColors.length; i++) {
+          if (e.keyCode === keyCodesColors[i]) {
+            setRgbColor({
+              ...rgbColor,
+              choose: 1,
+              r: hexToRGB(presetColors[i])[0],
+              g: hexToRGB(presetColors[i])[1],
+              b: hexToRGB(presetColors[i])[2],
+            });
+            handleChangeCompleteTV(presetColors[i]);
+          }
+        }
+      }
     }
   };
 
   useEventListener("keydown", keyboardChoser);
   useEventListener("keydown", openWithKeyboard);
+  useEventListener("keydown", colorWithNumber);
+
   return (
     <div className="color-picker">
       <button onClick={click}>{text}</button>
@@ -149,6 +205,7 @@ export const ColorPicker = ({
             onChangeComplete={
               isTV ? handleChangeCompleteTV : handleChangeComplete
             }
+            presetColors={presetColors}
           />
         </div>
       )}

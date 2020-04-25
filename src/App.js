@@ -7,7 +7,9 @@ function App() {
   const [boardColor, setBoardColor] = useState("#ffffff");
   const [textColor, setTextColor] = useState("#000000");
   const [buttonType, setButtonType] = useState("");
-  const [textOfColor, setTextOfColor] = useState("");
+  const [textOfColor, setTextOfColor] = useState(
+    "Press right arrow to change board color and left arrow to change text color"
+  );
   const [changingColor, setChangingColor] = useState(false);
 
   const defineBoardColor = (color) => {
@@ -26,14 +28,17 @@ function App() {
     setButtonType(button);
   };
 
-  const defineRgbType = (type) => {
-    if (type === 0 || type === 1) {
+  const instructions = (rgbType) => {
+    // alert(`hey ${buttonType}`)
+    if (rgbType === 0) {
       setTextOfColor(
-        "Change red using up and down arrow, press Enter to finnish that color"
+        "Press right arrow to change board color and left arrow to change text color"
       );
-    } else if (type === 2) {
+    } else if (rgbType === 1) {
+      setTextOfColor("Changing red, press Enter to finnish that color");
+    } else if (rgbType === 2) {
       setTextOfColor("Changing green, press Enter to finnish that color");
-    } else if (type === 3) {
+    } else if (rgbType === 3) {
       setTextOfColor("Changing blue, press Enter to finnish that color");
     }
   };
@@ -47,8 +52,8 @@ function App() {
       <h2 className="layoutName">This is your Layout</h2>
 
       <h3 className="instructions">
-        If you're on a TV, Press left arrow to change text color and right arrow to
-        change board color
+        If you're on a TV, Press left arrow to change text color and right arrow
+        to change board color
       </h3>
       <div className="board" style={{ backgroundColor: `${boardColor}` }}>
         <div className="text" style={{ color: `${textColor}` }}>
@@ -74,8 +79,9 @@ function App() {
               defineColor={defineBoardColor}
               button={"board"}
               defineButton={defineButton}
+              buttonType={buttonType}
               initialColor={boardColor}
-              defineRgbType={defineRgbType}
+              instructions={instructions}
               changeColor={changeColor}
               changingColor={changingColor}
             />
@@ -88,26 +94,28 @@ function App() {
               defineColor={defineTextColor}
               button={"text"}
               defineButton={defineButton}
+              buttonType={buttonType}
               initialColor={textColor}
-              defineRgbType={defineRgbType}
+              instructions={instructions}
               changeColor={changeColor}
               changingColor={changingColor}
             />
           </div>
           <div className="down"></div>
-      {buttonType && (
-        <div className="hexaTab">
-          <p className="aligntext">Changing {buttonType} color.</p>
-          <p className="aligntext">{textOfColor}</p>
-          <p className="hexadecimal">
-            {buttonType === "board" ? boardColor : textColor}
-          </p>
+          <div className="hexaTab">
+            <p className="aligntext">{textOfColor}</p>
+            {buttonType && (
+              <>
+                <p className="aligntext">Changing {buttonType} color.</p>
+                <p className="hexadecimal">
+                  {buttonType === "board" ? boardColor : textColor}
+                </p>
+              </>
+            )}
+          </div>
         </div>
-      )}
+      </div>
     </div>
-    </div>
-    </div>
-    
   );
 }
 
