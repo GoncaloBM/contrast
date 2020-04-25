@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./App.css";
 import "./Board.css";
 import { ColorPicker } from "./components/ColorPicker";
+import { SafeZone } from "./components/SafeZone";
+import useEventListener from "./use-event-listener";
 
 function App() {
   const [boardColor, setBoardColor] = useState("#ffffff");
@@ -11,6 +13,7 @@ function App() {
     "Press right arrow to change board color and left arrow to change text color"
   );
   const [changingColor, setChangingColor] = useState(false);
+  const [safeZoneVisible, setSafeZoneVisible] = useState(false);
 
   const defineBoardColor = (color) => {
     if (buttonType === "board") {
@@ -47,15 +50,25 @@ function App() {
     setChangingColor(!changingColor);
   };
 
+  const showingSafeZone = (e) => {
+    // if click on space it will show safeZone area
+    if (e.keyCode === 32) {
+      setSafeZoneVisible(!safeZoneVisible);
+    }
+  };
+
+  useEventListener("keydown", showingSafeZone);
+
   return (
     <div className="App">
       <h2 className="layoutName">This is your Layout</h2>
 
-      <h3 className="instructions">
-        If you're on a TV, Press left arrow to change text color and right arrow
-        to change board color
-      </h3>
-      <div className="board" style={{ backgroundColor: `${boardColor}` }}>
+      <h3 className="instructions">Press Space Button so show safe area</h3>
+      <div
+        className="board"
+        style={{ backgroundColor: `${boardColor}`, justifyContent: "center" }}
+      >
+        {safeZoneVisible && <SafeZone />}
         <div className="text" style={{ color: `${textColor}` }}>
           <h2>Star Wars - The Last Jedi</h2>
           <h3 className="mediumtext">
