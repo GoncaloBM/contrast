@@ -16,7 +16,7 @@ export const ColorPicker = ({
   instructions,
   changeColor,
   changingColor,
-  defineVisiblePalete
+  defineVisiblePalete,
 }) => {
   const [visiblePallete, setVisiblePallete] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState(initialColor);
@@ -91,6 +91,8 @@ export const ColorPicker = ({
       setIsTV(true);
       if (!changingColor) {
         newRGBColor(true, 1, 0, 0, 0);
+      } else {
+        newRGBColor(true, 0, 0, 0, 0);
       }
       click();
       handleChangeCompleteTV(backgroundColor);
@@ -198,7 +200,12 @@ export const ColorPicker = ({
 
   return (
     <div className="color-picker">
-      <button onClick={click}>{text}</button>
+      <button
+        style={{ backgroundColor: buttonType === button && "#20e22f" }}
+        onClick={click}
+      >
+        {text}
+      </button>
       {visiblePallete && (
         <div ref={ref}>
           <SketchPicker

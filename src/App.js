@@ -5,6 +5,7 @@ import { ColorPicker } from "./components/ColorPicker";
 import { SafeZone } from "./components/SafeZone";
 import { Board } from "./components/Board";
 import useEventListener from "./use-event-listener";
+import classNames from "classnames";
 
 function App() {
   const [boardColor, setBoardColor] = useState("#ffffff");
@@ -16,20 +17,19 @@ function App() {
   const [changingColor, setChangingColor] = useState(false);
   const [safeZoneVisible, setSafeZoneVisible] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [colorType, setColorType] = useState("");
 
   const defineVisiblePalete = () => {
     setVisible(!visible);
   };
 
   const defineBoardColor = (color) => {
-    console.log(color);
     if (buttonType === "board") {
       setBoardColor(color);
     }
   };
 
   const defineTextColor = (color) => {
-    console.log(color);
     if (buttonType === "text") {
       setTextColor(color);
     }
@@ -47,10 +47,13 @@ function App() {
       );
     } else if (rgbType === 1) {
       setTextOfColor("Changing red, press Enter to finnish that color");
+      setColorType("red");
     } else if (rgbType === 2) {
       setTextOfColor("Changing green, press Enter to finnish that color");
+      setColorType("green");
     } else if (rgbType === 3) {
       setTextOfColor("Changing blue, press Enter to finnish that color");
+      setColorType("blue");
     }
   };
 
@@ -88,7 +91,7 @@ function App() {
           <div className="pickerstyle2">
             <ColorPicker
               className="button"
-              text={"Choose your Board Color"}
+              text={"Board"}
               defineColor={defineBoardColor}
               button={"board"}
               defineButton={defineButton}
@@ -104,7 +107,7 @@ function App() {
           <div className="right"></div>
           <div className="pickerstyle" style={{ marginTop: visible && "35%" }}>
             <ColorPicker
-              text={"Choose your Text Color"}
+              text={"Text"}
               defineColor={defineTextColor}
               button={"text"}
               defineButton={defineButton}
@@ -121,8 +124,8 @@ function App() {
             <p className="aligntext">{textOfColor}</p>
             {buttonType && (
               <>
-                <p className="aligntext">Changing {buttonType} color.</p>
-                <p className="hexadecimal">
+                {/* <p className="aligntext">Changing {buttonType} color.</p> */}
+                <p className="hexadecimal" style={{ color: colorType }}>
                   {buttonType === "board" ? boardColor : textColor}
                 </p>
               </>

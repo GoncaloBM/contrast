@@ -160,6 +160,7 @@
 }
 
 button {
+  width: 150px;
   background-color: rgb(253, 209, 53);
   height: 4vw;
   font-size: 0.9rem;
