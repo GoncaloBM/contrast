@@ -72,13 +72,6 @@ function App() {
 
   return (
     <div className="App">
-      <h2 className="layoutName">This is your Layout</h2>
-
-      <h3 className="instructions">Press Space Button so show safe area.</h3>
-      <h3 className="instructions">
-        Press + and - buttons to increase and decrease font size and{" "}
-        <strong>Shift</strong> to add/remove Peacock font.
-      </h3>
       <Board
         boardColor={boardColor}
         textColor={textColor}
@@ -86,7 +79,16 @@ function App() {
       />
 
       <div className="ActionMenu">
-        <div className="ActionButton">
+        <div className="hexaTab-top">
+          <p>Keys:</p>
+          <p>Space: Enable/disable Safe Margin</p>
+          <p>Right Arrow: Enable/disable Board Color</p>
+          <p>Left Arrow: Enable/disable Text Color</p>
+          <p>Up/Down Arrow: Run through RGB color</p>
+          <p>+ / - : Increase/Decrease Font Size</p>
+          <p>Shift: Enable/disable Peacock Font</p>
+        </div>
+        <div className="ActionButton" style={{ marginTop: !visible && "75%" }}>
           <div className="top"></div>
           <div className="pickerstyle2">
             <ColorPicker
@@ -120,17 +122,17 @@ function App() {
             />
           </div>
           <div className="down" style={{ top: visible && "4%" }}></div>
-          <div className="hexaTab">
-            <p className="aligntext">{textOfColor}</p>
-            {buttonType && (
-              <>
-                {/* <p className="aligntext">Changing {buttonType} color.</p> */}
-                <p className="hexadecimal" style={{ color: colorType }}>
-                  {buttonType === "board" ? boardColor : textColor}
-                </p>
-              </>
-            )}
-          </div>
+        </div>
+        <div className="hexaTab">
+          <p className="aligntext">{textOfColor}</p>
+          {buttonType && (
+            <>
+              {/* <p className="aligntext">Changing {buttonType} color.</p> */}
+              <p className="hexadecimal" style={{ color: colorType }}>
+                {buttonType === "board" ? boardColor : textColor}
+              </p>
+            </>
+          )}
         </div>
       </div>
     </div>

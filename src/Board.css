@@ -1,5 +1,5 @@
 .wrapper {
-  width: 65%;
+  width: 70%;
 }
 .board {
   display: flex;
@@ -9,8 +9,8 @@
   border: 1px solid rgb(113, 113, 113);
   width: 100%;
   padding-bottom: 56.25%;
-  margin-top: 1%;
-  margin-left: 5vw;
+  margin-top: 10%;
+  margin-left: 2vw;
   float: left;
   bottom: 2%;
 }
@@ -24,10 +24,11 @@
 
 .ActionMenu {
   display: flex;
-  align-items: right;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
   border: 0.6px solid rgb(215, 215, 215);
-  height: 75%;
+  height: 90%;
   width: 24%;
   margin-top: 1%;
   right: 2%;
@@ -36,26 +37,32 @@
 }
 
 .ActionButton {
-  margin-top: 5%;
-  margin-left: 5%;
+  margin-top: 60%;
   position: relative;
   width: 90%;
-  height: 94%;
+  height: 90%;
   border: 0.2px solid rgb(255, 255, 255);
   margin-bottom: 5%;
 }
 
 .hexaTab {
-  top: 80%;
-  width: 100%;
-  height: 18%;
-  padding: 2%;
-  margin-left: -2%;
+  bottom: 2%;
+  width: 95%;
+  height: 12%;
   position: absolute;
   background-color: rgb(38, 38, 38);
   color: rgb(255, 255, 255);
   font-size: 1em;
-  align-items: center;
+}
+
+.hexaTab-top {
+  top: 2%;
+  width: 95%;
+  height: 26%;
+  position: absolute;
+  background-color: rgb(38, 38, 38);
+  color: rgb(255, 255, 255);
+  font-size: 1em;
 }
 
 .hexadecimal {
@@ -70,7 +77,7 @@
 }
 
 .color-picker {
-  margin-top: 3.7vw;
+  margin-top: 2.7vw;
   margin-left: 6vw;
   width: 9vw;
   height: 2.3vw;
@@ -107,7 +114,7 @@
   background-repeat: no-repeat;
   background-position: center;
   left: 3%;
-  top: 11%;
+  top: 7%;
   position: relative;
 }
 
@@ -118,7 +125,7 @@
   background-position: left;
   position: relative;
   left: 6%;
-  margin-top: 15%;
+  margin-top: 10%;
 }
 
 .right {
