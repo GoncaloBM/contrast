@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { SketchPicker } from "react-color";
+import { SketchPicker, Block } from "react-color";
 import "./ColorPicker.css";
 import useEventListener from "./../use-event-listener";
 import { rgbToHex } from "./RGBtoHex";
@@ -16,6 +16,7 @@ export const ColorPicker = ({
   instructions,
   changeColor,
   changingColor,
+  defineVisiblePalete
 }) => {
   const [visiblePallete, setVisiblePallete] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState(initialColor);
@@ -45,6 +46,12 @@ export const ColorPicker = ({
 
   useOnClickOutside(ref, () => setVisiblePallete(false));
 
+  const defineColorWithKey = () => {
+    setBackgroundColor(rgbToHex(rgbColor.r, rgbColor.g, rgbColor.b)); // This is to change the color in Color Picker
+    defineColor(rgbToHex(rgbColor.r, rgbColor.g, rgbColor.b));
+    instructions(rgbColor.choose);
+  };
+
   const newRGBColor = (newOrdEndColor, typeColor, red, green, blue) => {
     if (newOrdEndColor) {
       setRgbColor({
@@ -66,19 +73,13 @@ export const ColorPicker = ({
     defineColorWithKey();
   };
 
-  const defineColorWithKey = () => {
-    setBackgroundColor(rgbToHex(rgbColor.r, rgbColor.g, rgbColor.b));
-    defineColor(rgbToHex(rgbColor.r, rgbColor.g, rgbColor.b));
-    instructions(rgbColor.choose);
-  };
-
   const openWithKeyboard = (e) => {
     e.preventDefault();
 
     if (
       (e.keyCode === 37 || e.keyCode === 39) &&
       changingColor &&
-      button != buttonType
+      button !== buttonType
     ) {
       return;
     }
@@ -110,7 +111,6 @@ export const ColorPicker = ({
       if (e.keyCode === 38) {
         // change red color with up arrow
         newRGBColor(false, 0, 1, 0, 0);
-        // newRGBColor(true, 2, 1, 0, 0);
       } else if (e.keyCode === 40) {
         // change red color with down arrow
         newRGBColor(false, 0, -1, 0, 0);
@@ -150,6 +150,7 @@ export const ColorPicker = ({
 
   const click = () => {
     setVisiblePallete(!visiblePallete);
+    defineVisiblePalete();
     changeColor();
     if (changingColor) {
       defineButton("");
@@ -201,6 +202,7 @@ export const ColorPicker = ({
       {visiblePallete && (
         <div ref={ref}>
           <SketchPicker
+            width={"250px"}
             color={backgroundColor}
             onChangeComplete={
               isTV ? handleChangeCompleteTV : handleChangeComplete

@@ -3,6 +3,7 @@ import "./App.css";
 import "./Board.css";
 import { ColorPicker } from "./components/ColorPicker";
 import { SafeZone } from "./components/SafeZone";
+import { Board } from "./components/Board";
 import useEventListener from "./use-event-listener";
 
 function App() {
@@ -14,14 +15,21 @@ function App() {
   );
   const [changingColor, setChangingColor] = useState(false);
   const [safeZoneVisible, setSafeZoneVisible] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  const defineVisiblePalete = () => {
+    setVisible(!visible);
+  };
 
   const defineBoardColor = (color) => {
+    console.log(color);
     if (buttonType === "board") {
       setBoardColor(color);
     }
   };
 
   const defineTextColor = (color) => {
+    console.log(color);
     if (buttonType === "text") {
       setTextColor(color);
     }
@@ -63,25 +71,17 @@ function App() {
     <div className="App">
       <h2 className="layoutName">This is your Layout</h2>
 
-      <h3 className="instructions">Press Space Button so show safe area</h3>
-      <div
-        className="board"
-        style={{ backgroundColor: `${boardColor}`, justifyContent: "center" }}
-      >
-        {safeZoneVisible && <SafeZone />}
-        <div className="text" style={{ color: `${textColor}` }}>
-          <h2>Star Wars - The Last Jedi</h2>
-          <h3 className="mediumtext">
-            A small river named Duden flows by their place and supplies it.
-          </h3>
-          <h5 className="mediumtext">
-            Far far away, behind the word mountains, far from the countries
-            Vokalia and a Consonantia, there live the blind texts. Separated
-            they live in Bookmarksgrove right at the coast of the Semantics, a
-            large language ocean.
-          </h5>
-        </div>
-      </div>
+      <h3 className="instructions">Press Space Button so show safe area.</h3>
+      <h3 className="instructions">
+        Press + and - buttons to increase and decrease font size and{" "}
+        <strong>Shift</strong> to add/remove Peacock font.
+      </h3>
+      <Board
+        boardColor={boardColor}
+        textColor={textColor}
+        safeZoneVisible={safeZoneVisible}
+      />
+
       <div className="ActionMenu">
         <div className="ActionButton">
           <div className="top"></div>
@@ -97,11 +97,12 @@ function App() {
               instructions={instructions}
               changeColor={changeColor}
               changingColor={changingColor}
+              defineVisiblePalete={defineVisiblePalete}
             />
           </div>
-          <div className="left"></div>
+          <div className="left" style={{ marginTop: visible && "35%" }}></div>
           <div className="right"></div>
-          <div className="pickerstyle">
+          <div className="pickerstyle" style={{ marginTop: visible && "35%" }}>
             <ColorPicker
               text={"Choose your Text Color"}
               defineColor={defineTextColor}
@@ -112,9 +113,10 @@ function App() {
               instructions={instructions}
               changeColor={changeColor}
               changingColor={changingColor}
+              defineVisiblePalete={defineVisiblePalete}
             />
           </div>
-          <div className="down"></div>
+          <div className="down" style={{ top: visible && "4%" }}></div>
           <div className="hexaTab">
             <p className="aligntext">{textOfColor}</p>
             {buttonType && (

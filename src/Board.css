@@ -1,16 +1,25 @@
-
+.wrapper {
+  width: 65%;
+}
 .board {
   display: flex;
   align-items: center;
+  justify-content: center;
   position: relative;
   border: 1px solid rgb(113, 113, 113);
-  height: 75%;
-  width: 65%;
+  width: 100%;
+  padding-bottom: 56.25%;
   margin-top: 1%;
   margin-left: 5vw;
   float: left;
   bottom: 2%;
-  
+}
+
+.text {
+  padding: 10%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
 }
 
 .ActionMenu {
@@ -24,7 +33,6 @@
   right: 2%;
   float: right;
   bottom: 2%;
-  
 }
 
 .ActionButton {
@@ -48,22 +56,17 @@
   color: rgb(255, 255, 255);
   font-size: 0.8em;
   align-items: center;
-  
-  
 }
 
 .hexadecimal {
-font-size: 1.6em;
-font-weight: normal;
-
+  font-size: 1.6em;
+  font-weight: normal;
 }
 
 .aligntext {
   padding-left: 1vw;
   padding-top: 0.2vw;
 }
-
-
 
 .color-picker {
   margin-top: 3.7vw;
@@ -73,16 +76,13 @@ font-weight: normal;
   text-align: center;
   font-weight: bolder;
   /*border: 0.1px solid rgb(223, 223, 223);*/
- 
 }
 
 .pickerstyle {
- inline-size: 0rem;
- margin-top: -10%;
- margin-left: 4%;
-align-items: center;
-
-
+  inline-size: 0rem;
+  margin-top: -10%;
+  margin-left: 4%;
+  align-items: center;
 }
 
 .pickerstyle2 {
@@ -90,31 +90,29 @@ align-items: center;
   align-items: center;
 }
 
-.top { 
+.top {
   height: 1.7vw;
-  background-image: url('./images/up2.svg');
+  background-image: url("./images/up2.svg");
   background-repeat: no-repeat;
   background-position: center;
   top: 4%;
   left: 3%;
   position: relative;
- 
 }
 
-.down { 
+.down {
   height: 1.7vw;
-  background-image: url('./images/down2.svg');
+  background-image: url("./images/down2.svg");
   background-repeat: no-repeat;
   background-position: center;
   left: 3%;
   top: 11%;
   position: relative;
- 
 }
 
-.left { 
+.left {
   height: 1.7vw;
-  background-image: url('./images/left2.svg');
+  background-image: url("./images/left2.svg");
   background-repeat: no-repeat;
   background-position: left;
   position: relative;
@@ -122,27 +120,20 @@ align-items: center;
   margin-top: 15%;
 }
 
-.right { 
+.right {
   height: 1.7vw;
-  background-image: url('./images/right2.svg');
+  background-image: url("./images/right2.svg");
   background-repeat: no-repeat;
   background-position: right;
   right: 3%;
   margin-top: -8%;
   position: relative;
-  
-}
-
-.text {
-  padding: 10%;
-
 }
 
 .mediumtext {
-font-weight: lighter;
-margin: 4vw;
+  font-weight: lighter;
+  margin: 4vw;
 }
-
 
 .layoutName {
   margin-left: 5vw;
@@ -162,11 +153,9 @@ margin: 4vw;
   position: absolute;
   left: 7%;
   right: 5%;
-  top: 15%;
-  bottom: 30%;
+  top: 20%;
   margin: 0 auto;
   z-index: 1000;
-
 }
 
 button {
@@ -182,17 +171,17 @@ button {
    }
  }*/
 
- .tool {
+.tool {
   background-color: rgb(0, 0, 0);
   width: 100%;
   height: 80px;
   background-repeat: no-repeat;
 }
 
- .tool p {
+.tool p {
   width: 70%;
   height: 80%;
-  background-image: url('./images/logo.png');
+  background-image: url("./images/logo.png");
   background-repeat: no-repeat;
   background-position: left center no-repeat;
   margin-left: 0%;
@@ -206,5 +195,4 @@ button {
   color: white;
   font-size: 2rem;
   margin: 0 auto;
-  }
-  
+}

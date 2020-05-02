@@ -1,6 +1,13 @@
-.safe-zone {
+.title-safe {
   position: absolute;
-  width: calc(100% - 100px);
-  height: calc(100% - 100px);
-  border: 2px dashed black;
+  width: 95%;
+  height: 95%;
+  border: 1px dashed grey;
+}
+
+.action-safe {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  border: 1px dashed grey;
 }
