@@ -54,12 +54,13 @@
   position: absolute;
   background-color: rgb(38, 38, 38);
   color: rgb(255, 255, 255);
-  font-size: 0.8em;
+  font-size: 1em;
   align-items: center;
 }
 
 .hexadecimal {
-  font-size: 1.6em;
+  margin-top: 0;
+  font-size: 2.5em;
   font-weight: normal;
 }
 
