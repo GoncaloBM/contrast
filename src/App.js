@@ -5,7 +5,7 @@ import { ColorPicker } from "./components/ColorPicker";
 import { SafeZone } from "./components/SafeZone";
 import { Board } from "./components/Board";
 import useEventListener from "./use-event-listener";
-import classNames from "classnames";
+
 
 function App() {
   const [boardColor, setBoardColor] = useState("#ffffff");
@@ -73,12 +73,14 @@ function App() {
   return (
     <div className="App">
       <h2 className="layoutName">This is your Layout</h2>
-
-      <h3 className="instructions">Press Space Button so show safe area.</h3>
-      <h3 className="instructions">
-        Press + and - buttons to increase and decrease font size and{" "}
+    <div className="instructions">
+      <h5>Press <strong>Space</strong> Button so show safe area.
+      <br />
+      <br />
+        Press <strong> + / - </strong> buttons to increase and decrease font size and{" "}
         <strong>Shift</strong> to add/remove Peacock font.
-      </h3>
+      </h5>
+      </div>
       <Board
         boardColor={boardColor}
         textColor={textColor}
@@ -103,9 +105,9 @@ function App() {
               defineVisiblePalete={defineVisiblePalete}
             />
           </div>
-          <div className="left" style={{ marginTop: visible && "35%" }}></div>
+          <div className="left" style={{ marginTop: visible && "5%" }}></div>
           <div className="right"></div>
-          <div className="pickerstyle" style={{ marginTop: visible && "35%" }}>
+          <div className="pickerstyle" style={{ marginTop: visible && "5%" }}>
             <ColorPicker
               text={"Text"}
               defineColor={defineTextColor}
