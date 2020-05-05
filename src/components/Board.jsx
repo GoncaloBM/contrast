@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import { SafeZone } from "./SafeZone";
 import useEventListener from "./../use-event-listener";
 import "../fonts/fonts.css";
+import { DisableInfo } from "./DisableInfo";
 
-export const Board = ({ textColor, boardColor, safeZoneVisible }) => {
+export const Board = ({
+  textColor,
+  boardColor,
+  safeZoneVisible,
+  DisableInfo,
+}) => {
   const [textSize, setTextSize] = useState(50);
 
   const [fontPeacock, setFontPeacock] = useState(false);
@@ -34,6 +40,7 @@ export const Board = ({ textColor, boardColor, safeZoneVisible }) => {
     <div className="wrapper">
       <div className="board" style={boardStyle}>
         {safeZoneVisible && <SafeZone />}
+        {DisableInfo && <DisableInfo />}
         <div className="text" style={{ color: `${textColor}` }}>
           <h2 style={{ fontSize: `${textSize - 10}px` }}>
             Star Wars - The Last Jedi

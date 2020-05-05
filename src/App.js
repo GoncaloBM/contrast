@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import "./App.css";
 import "./Board.css";
 import { ColorPicker } from "./components/ColorPicker";
-import { SafeZone } from "./components/SafeZone";
 import { Board } from "./components/Board";
 import useEventListener from "./use-event-listener";
-import classNames from "classnames";
 
 function App() {
   const [boardColor, setBoardColor] = useState("#ffffff");
@@ -18,6 +16,11 @@ function App() {
   const [safeZoneVisible, setSafeZoneVisible] = useState(false);
   const [visible, setVisible] = useState(false);
   const [colorType, setColorType] = useState("");
+  const [DisableInfo, setDisableInfo] = useState(false);
+
+  const showDisableInfo = () => {
+    setDisableInfo(true);
+  };
 
   const defineVisiblePalete = () => {
     setVisible(!visible);
@@ -76,6 +79,7 @@ function App() {
         boardColor={boardColor}
         textColor={textColor}
         safeZoneVisible={safeZoneVisible}
+        DisableInfo={DisableInfo}
       />
 
       <div className="ActionMenu">
@@ -103,6 +107,7 @@ function App() {
               changeColor={changeColor}
               changingColor={changingColor}
               defineVisiblePalete={defineVisiblePalete}
+              showDisableInfo={showDisableInfo}
             />
           </div>
           <div className="left" style={{ marginTop: visible && "35%" }}></div>
@@ -119,6 +124,7 @@ function App() {
               changeColor={changeColor}
               changingColor={changingColor}
               defineVisiblePalete={defineVisiblePalete}
+              showDisableInfo={showDisableInfo}
             />
           </div>
           <div className="down" style={{ top: visible && "4%" }}></div>

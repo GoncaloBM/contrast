@@ -17,6 +17,7 @@ export const ColorPicker = ({
   changeColor,
   changingColor,
   defineVisiblePalete,
+  showDisableInfo,
 }) => {
   const [visiblePallete, setVisiblePallete] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState(initialColor);
@@ -81,6 +82,7 @@ export const ColorPicker = ({
       changingColor &&
       button !== buttonType
     ) {
+      // showDisableInfo();
       return;
     }
 
