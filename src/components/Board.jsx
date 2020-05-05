@@ -8,7 +8,8 @@ export const Board = ({
   textColor,
   boardColor,
   safeZoneVisible,
-  DisableInfo,
+  showingDisableInfo,
+  buttonType,
 }) => {
   const [textSize, setTextSize] = useState(50);
 
@@ -32,16 +33,23 @@ export const Board = ({
   useEventListener("keydown", changeFonctPeacock);
 
   const boardStyle = {
-    backgroundColor: `${boardColor}`,
+    backgroundColor: showingDisableInfo
+      ? `rgba(0, 0, 0, 0.5)`
+      : `${boardColor}`,
     fontFamily: fontPeacock && "peacock",
+  };
+
+  const textStyle = {
+    color: `${textColor}`,
+    opacity: showingDisableInfo && "0.5",
   };
 
   return (
     <div className="wrapper">
       <div className="board" style={boardStyle}>
         {safeZoneVisible && <SafeZone />}
-        {DisableInfo && <DisableInfo />}
-        <div className="text" style={{ color: `${textColor}` }}>
+        {showingDisableInfo && <DisableInfo buttonType={buttonType} />}
+        <div className="text" style={textStyle}>
           <h2 style={{ fontSize: `${textSize - 10}px` }}>
             Star Wars - The Last Jedi
           </h2>
