@@ -18,8 +18,15 @@ function App() {
   const [colorType, setColorType] = useState("");
   const [DisableInfo, setDisableInfo] = useState(false);
 
-  const showDisableInfo = () => {
-    setDisableInfo(true);
+  const showDisableInfo = (trueOrFalse) => {
+    setDisableInfo(trueOrFalse);
+  };
+
+  //Make the Menu of Disable Information desappear with Enter
+  const disableMenuOff = (e) => {
+    if (DisableInfo && e.keyCode === 13) {
+      setDisableInfo(false);
+    }
   };
 
   const defineVisiblePalete = () => {
@@ -72,6 +79,7 @@ function App() {
   };
 
   useEventListener("keydown", showingSafeZone);
+  useEventListener("keydown", disableMenuOff);
 
   return (
     <div className="App">
@@ -79,7 +87,8 @@ function App() {
         boardColor={boardColor}
         textColor={textColor}
         safeZoneVisible={safeZoneVisible}
-        DisableInfo={DisableInfo}
+        showingDisableInfo={DisableInfo}
+        buttonType={buttonType}
       />
 
       <div className="ActionMenu">
@@ -96,7 +105,7 @@ function App() {
           <div className="top"></div>
           <div className="pickerstyle2">
             <ColorPicker
-              className="button"
+              // className="button"
               text={"Board"}
               defineColor={defineBoardColor}
               button={"board"}

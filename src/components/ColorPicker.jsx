@@ -5,6 +5,7 @@ import useEventListener from "./../use-event-listener";
 import { rgbToHex } from "./RGBtoHex";
 import { hexToRGB } from "./RGBtoHex";
 import useOnClickOutside from "../useOnClickOutside";
+import { DisableInfo } from "./DisableInfo";
 
 export const ColorPicker = ({
   defineColor,
@@ -78,11 +79,11 @@ export const ColorPicker = ({
     e.preventDefault();
 
     if (
-      (e.keyCode === 37 || e.keyCode === 39) &&
       changingColor &&
-      button !== buttonType
+      ((buttonType === "text" && e.keyCode === 39) ||
+        (buttonType === "board" && e.keyCode === 37))
     ) {
-      // showDisableInfo();
+      showDisableInfo(true);
       return;
     }
 
@@ -156,6 +157,7 @@ export const ColorPicker = ({
     setVisiblePallete(!visiblePallete);
     defineVisiblePalete();
     changeColor();
+    showDisableInfo(false);
     if (changingColor) {
       defineButton("");
       instructions(0);
