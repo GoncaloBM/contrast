@@ -52,18 +52,23 @@ function App() {
       </h3>
       <div className="board" style={{ backgroundColor: `${boardColor}` }}>
         <div className="text" style={{ color: `${textColor}` }}>
-          <h2>Star Wars - The Last Jedi</h2>
-          <h3 className="mediumtext">
+          <h1>Star Wars - The Last Jedi</h1>
+          <h2 className="mediumtext">
             A small river named Duden flows by their place and supplies it.
-          </h3>
-          <h5 className="mediumtext">
+          </h2>
+          <p className="mediumtext">
             Far far away, behind the word mountains, far from the countries
             Vokalia and a Consonantia, there live the blind texts. Separated
             they live in Bookmarksgrove right at the coast of the Semantics, a
             large language ocean.
-          </h5>
+          </p>
         </div>
       </div>
+      <div class="btns">
+      <button class="plus">+</button>
+      <button class="minus">-</button>
+      <p>Change your Font Size</p>
+    </div>
       <div className="ActionMenu">
         <div className="ActionButton">
           <div className="top"></div>
@@ -103,6 +108,7 @@ function App() {
             {buttonType === "board" ? boardColor : textColor}
           </p>
         </div>
+      
       )}
     </div>
     </div>

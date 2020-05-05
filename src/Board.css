@@ -208,3 +208,31 @@ button {
   margin: 0 auto;
   }
   
+  .btns {
+    position: relative;
+    height: 7vw;
+    width: 65vw;
+    margin-top: 40vw;
+    margin-left: 5vw;
+   
+  }
+  .btns button {
+    background: rgb(253, 209, 53);
+    color: #333333;
+    border: none;
+    width: 2.2vw;
+    height: 2.2vw;
+    margin-right: 1%;
+    float: right;
+  
+  }
+  .btns button:hover {
+    background: rgb(220, 0, 0);
+    cursor: pointer;
+  }
+  
+  .btns p {
+    text-align: right;
+    margin-right: 7vw;
+    padding-top: 0.8vw;
+  }
