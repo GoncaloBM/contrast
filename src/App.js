@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import "./App.css";
 import "./Board.css";
 import { ColorPicker } from "./components/ColorPicker";
-import { SafeZone } from "./components/SafeZone";
 import { Board } from "./components/Board";
 import useEventListener from "./use-event-listener";
-
 
 function App() {
   const [boardColor, setBoardColor] = useState("#ffffff");
@@ -18,6 +16,11 @@ function App() {
   const [safeZoneVisible, setSafeZoneVisible] = useState(false);
   const [visible, setVisible] = useState(false);
   const [colorType, setColorType] = useState("");
+  const [DisableInfo, setDisableInfo] = useState(false);
+
+  const showDisableInfo = () => {
+    setDisableInfo(true);
+  };
 
   const defineVisiblePalete = () => {
     setVisible(!visible);
@@ -72,23 +75,26 @@ function App() {
 
   return (
     <div className="App">
-      <h2 className="layoutName">This is your Layout</h2>
-    <div className="instructions">
-      <h5>Press <strong>Space</strong> Button so show safe area.
-      <br />
-      <br />
-        Press <strong> + / - </strong> buttons to increase and decrease font size and{" "}
-        <strong>Shift</strong> to add/remove Peacock font.
-      </h5>
-      </div>
+     
+   
       <Board
         boardColor={boardColor}
         textColor={textColor}
         safeZoneVisible={safeZoneVisible}
+        DisableInfo={DisableInfo}
       />
 
       <div className="ActionMenu">
-        <div className="ActionButton">
+        <div className="hexaTab-top">
+          <p className="instructions">/ Instructions Keys /</p>
+          <p className="keys"><strong>SPACE: </strong> Enable/disable Safe Margin</p>
+          <p className="keys"><strong>RIGHT Arrow: </strong>Enable/disable Board Color</p>
+          <p className="keys"><strong>LEFT Arrow: </strong>Enable/disable Text Color</p>
+          <p className="keys"><strong>UP/DOWN Arrow:</strong> Run through RGB color</p>
+          <p className="keys"><strong>+ / - : </strong>Increase/Decrease Font Size</p>
+          <p className="keys"><strong>SHIFT: </strong>Enable/disable Peacock Font</p>
+        </div>
+        <div className="ActionButton" style={{ marginTop: !visible && "75%" }}>
           <div className="top"></div>
           <div className="pickerstyle2">
             <ColorPicker
@@ -103,6 +109,7 @@ function App() {
               changeColor={changeColor}
               changingColor={changingColor}
               defineVisiblePalete={defineVisiblePalete}
+              showDisableInfo={showDisableInfo}
             />
           </div>
           <div className="left" style={{ marginTop: visible && "5%" }}></div>
@@ -119,20 +126,21 @@ function App() {
               changeColor={changeColor}
               changingColor={changingColor}
               defineVisiblePalete={defineVisiblePalete}
+              showDisableInfo={showDisableInfo}
             />
           </div>
           <div className="down" style={{ top: visible && "4%" }}></div>
-          <div className="hexaTab">
-            <p className="aligntext">{textOfColor}</p>
-            {buttonType && (
-              <>
-                {/* <p className="aligntext">Changing {buttonType} color.</p> */}
-                <p className="hexadecimal" style={{ color: colorType }}>
-                  {buttonType === "board" ? boardColor : textColor}
-                </p>
-              </>
-            )}
-          </div>
+        </div>
+        <div className="hexaTab">
+          <p className="aligntext">{textOfColor}</p>
+          {buttonType && (
+            <>
+              {/* <p className="aligntext">Changing {buttonType} color.</p> */}
+              <p className="hexadecimal" style={{ color: colorType }}>
+                {buttonType === "board" ? boardColor : textColor}
+              </p>
+            </>
+          )}
         </div>
       </div>
     </div>

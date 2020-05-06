@@ -1,23 +1,22 @@
 .wrapper {
-  width: 65%;
+  width: 70%;
 }
 .board {
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  border: 1px solid rgb(155, 155, 155);
-  width: 70vw;
-  height: 1vw;
+  border: 1px solid rgb(113, 113, 113);
+  width: 100%;
   padding-bottom: 56.25%;
-  top: 1vw;
-  margin-left: 3vw;
+  margin-top: 8%;
+  margin-left: 2vw;
   float: left;
-  bottom: 0%;
+  bottom: 2%;
 }
 
 .text {
-  padding: 10%;
+  padding: 13%;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -25,54 +24,72 @@
 
 .ActionMenu {
   display: flex;
-  align-items: right;
-  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
   border: 0.6px solid rgb(215, 215, 215);
-  height: 75%;
-  width: 20%;
-  top: 9.7vw;
-  right: 2vw;
+  width: 24%;
+  margin-top: 4.5%;
   float: right;
-  
+ margin-bottom: 1%;
+  left: 3%;
 }
 
 .ActionButton {
-  margin-top: 5%;
-  margin-left: 5%;
-  position: relative;
+  position: absolute;
   width: 90%;
-  height: 94%;
- 
-  margin-bottom: 5%;
+  bottom: 53%;
+  flex-direction: row;
+  justify-content: center;
+  bottom: 22vw;
 }
 
 .hexaTab {
-  top: 21.5vw;
-  width: 101%;
-  height: 17%;
-  padding: 2%;
-  margin-left: -2.5%;
+  bottom: 40%;
+  width: 83%;
+  height: 11%;
   position: absolute;
   background-color: rgb(38, 38, 38);
   color: rgb(255, 255, 255);
   font-size: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.hexaTab-top {
+  top: 61%;
+  width: 90%;
+  height: 37%;
+  position: absolute;
+  background-color: rgb(38, 38, 38);
+  color: rgb(255, 255, 255);
   align-items: center;
+  justify-content: center;
 }
 
 .hexadecimal {
-  margin-top: 0;
-  font-size: 1.9em;
+  font-size: 2.2em;
   font-weight: normal;
+  margin-top: -1rem;
 }
 
-.aligntext {
-  padding-left: 1vw;
-  padding-top: 0.2vw;
+.instructions {
+  font-variant: small-caps;
+  font-size: 1.4rem;
+  text-align: center;
+  padding-right: 5rem;
+  margin-top: 0rem;
+}
+
+.keys {
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1.2rem;
 }
 
 .color-picker {
-  margin-top: 3.7vw;
-  margin-left: 4.2vw;
+  margin-top: 2.7vw;
+  margin-left: 6vw;
   width: 9vw;
   height: 2.3vw;
   text-align: center;
@@ -81,56 +98,67 @@
 }
 
 .pickerstyle {
-  inline-size: 0rem;
   margin-left: 4%;
-  margin-top: -3.7rem;
+  margin-bottom: 3rem;
   align-items: center;
+  
 }
 
 .pickerstyle2 {
   margin-left: 4%;
+  margin-bottom: 0rem;
   align-items: center;
+  
 }
 
 .top {
   height: 1.7vw;
+  width: 100%;
   background-image: url("./images/up2.svg");
   background-repeat: no-repeat;
   background-position: center;
-  top: 4%;
   left: 3%;
   position: relative;
+  top: 0rem;
+
 }
 
 .down {
   height: 1.7vw;
+  width: 100%;
   background-image: url("./images/down2.svg");
   background-repeat: no-repeat;
   background-position: center;
   left: 3%;
-  top: 9%;
   position: relative;
+  top: 0rem;
+  
 }
 
 .left {
   height: 1.7vw;
+  width: 100%;
   background-image: url("./images/left2.svg");
   background-repeat: no-repeat;
   background-position: left;
-  position: relative;
-  left: 6%;
-  margin-top: 15%;
+  float: left;
+  margin-left: 4rem;
+ 
 }
 
 .right {
   height: 1.7vw;
+  width: 100%;
   background-image: url("./images/right2.svg");
   background-repeat: no-repeat;
   background-position: right;
-  right: 3%;
-  margin-top: -8%;
-  position: relative;
+  margin-top: -7%;
+  float: right;
+  margin-right: 3rem;
+  
+  
 }
+
 
 .mediumtext {
   font-weight: lighter;
@@ -138,50 +166,32 @@
 }
 
 .layoutName {
-  margin-left: 3vw;
+  margin-left: 5vw;
   margin-top: 2vw;
   text-align: left;
   font-weight: bold;
 }
 
 .instructions {
-  width: 15%;
-  height: 7%;
-  padding: 2%;
-  position: absolute;
-  background-color: rgb(38, 38, 38);
-  align-items: center;
-  right: 2.5%;
-  float: right;
-  top: 78.5%;
- 
+  margin-left: 5vw;
+  padding-top: 0.5vw;
+  font-weight: normal;
 }
 
-.instructions h5 {
-  margin-top: -1rem;
-font-weight: normal;
-font-size: 0.95em;
-line-height: 1.4rem;
-color: rgb(255, 255, 255);
-padding: 0.1rem;
-
-  
-  
-}
 .sketch-picker {
   position: absolute;
   left: 7%;
   right: 5%;
-  top: 20%;
+  bottom: 0;
   margin: 0 auto;
   z-index: 1000;
 }
 
 button {
-  width: 150px;
+  width: 90%;
   background-color: rgb(253, 209, 53);
-  height: 4vw;
-  font-size: 0.9rem;
+  height: 100%;
+  font-size: 1.5rem;
   color: rgb(33, 33, 33);
 }
 /*
